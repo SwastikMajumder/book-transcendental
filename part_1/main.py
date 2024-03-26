@@ -277,7 +277,7 @@ equal_category = [[item] for item in formed_math] # categories of equal equation
 # iterate through all possible equations and categorize equal ones
 for equation in formed_math:
     output_list = search(equation, 1) # generate equal ones
-    for output in output_list: # check if they are in prsent in some equality category
+    for output in output_list: # check if they are in present in some equality category
         output = str_form(output)
         output_loc = -1
         equation_loc = -1
