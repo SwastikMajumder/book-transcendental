@@ -1,9 +1,15 @@
-Copyright (c) 2024 Swastik Majumder
+Copyright © 2024 Swastik Majumder. All rights reserved.
 
-All rights reserved.
+This work and its contents are protected by copyright law. You may use, modify, and distribute this work (excluding any third-party assets included in this work) for personal, educational, or commercial purposes under the following conditions:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+1. You may not remove or alter the copyright notice or any other proprietary notices contained in the work.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+2. You may not sell, sublicense, or distribute this work, or any part thereof, as part of any commercial product without prior written consent from the author.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+3. This work is provided "as is," without any warranty, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. In no event shall the author be liable for any claim, damages, or other liability arising from the use or distribution of this work.
+
+For any reuse or distribution, you must make clear to others the license terms of this work. The best way to do this is with a link to the following web page: [Link to license]
+
+Any of the above conditions can be waived if you obtain permission from the copyright holder.
+
+For inquiries about commercial use, distribution, or any questions regarding this work, please contact [Your Contact Information].
