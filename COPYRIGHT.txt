@@ -8,8 +8,4 @@ This work and its contents are protected by copyright law. You may use, modify, 
 
 3. This work is provided "as is," without any warranty, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. In no event shall the author be liable for any claim, damages, or other liability arising from the use or distribution of this work.
 
-For any reuse or distribution, you must make clear to others the license terms of this work. The best way to do this is with a link to the following web page: [Link to license]
-
 Any of the above conditions can be waived if you obtain permission from the copyright holder.
-
-For inquiries about commercial use, distribution, or any questions regarding this work, please contact [Your Contact Information].
