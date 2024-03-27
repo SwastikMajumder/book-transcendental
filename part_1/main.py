@@ -1,6 +1,3 @@
-# Copyright (c) 2024 Swastik Majumder
-# All rights reserved.
-
 # Part of the book Transcendental Computing with Python: Applications in Mathematics - Edition 1
 
 from collections import deque
