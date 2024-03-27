@@ -1,11 +1,1 @@
 Copyright © 2024 Swastik Majumder. All rights reserved.
-
-This work and its contents are protected by copyright law. You may use, modify, and distribute this work (excluding any third-party assets included in this work) for personal, educational, or commercial purposes under the following conditions:
-
-1. You may not remove or alter the copyright notice or any other proprietary notices contained in the work.
-
-2. You may not sell, sublicense, or distribute this work, or any part thereof, as part of any commercial product without prior written consent from the author.
-
-3. This work is provided "as is," without any warranty, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. In no event shall the author be liable for any claim, damages, or other liability arising from the use or distribution of this work.
-
-Any of the above conditions can be waived if you obtain permission from the copyright holder.
