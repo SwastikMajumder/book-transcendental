@@ -258,7 +258,7 @@ def print_equation_helper(equation_tree):
 
 # fancy print main function
 def print_equation(eq):
-    eq = str_form(flatten_tree(tree_form(eq)))
+    #eq = str_form(flatten_tree(tree_form(eq)))
     eq = eq.replace("v_0", "x")
     eq = eq.replace("v_1", "y")
     eq = eq.replace("v_2", "z")
