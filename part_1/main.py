@@ -225,23 +225,6 @@ def spot_invalid_equation(equation):
         return equation.children[1].name[:2] == "d_" and int(equation.children[1].name[2:]) >= 2
     return True
 
-# remove unecessary brackets, for fancy printing and spohistication
-def flatten_tree(node):
-    if not node.children:
-        return node
-    if node.name in {"f_add", "f_mul"}: # commutative property supporting functions
-        merged_children = [] # merge all the children
-        for child in node.children:
-            flattened_child = flatten_tree(child)
-            if flattened_child.name == node.name:
-                merged_children.extend(flattened_child.children)
-            else:
-                merged_children.append(flattened_child)
-        return TreeNode(node.name, merged_children)
-    else:
-        node.children = [flatten_tree(child) for child in node.children]
-        return node
-
 # fancy print
 def print_equation_helper(equation_tree):
     if equation_tree.children == []:
@@ -255,7 +238,6 @@ def print_equation_helper(equation_tree):
 
 # fancy print main function
 def print_equation(eq):
-    #eq = str_form(flatten_tree(tree_form(eq)))
     eq = eq.replace("v_0", "x")
     eq = eq.replace("v_1", "y")
     eq = eq.replace("v_2", "z")
