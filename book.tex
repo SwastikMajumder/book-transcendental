@@ -1,0 +1,1029 @@
+\documentclass{book}
+
+\usepackage{listings}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{courier} % Better monospaced font
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\title{Transcendental Computing in Python\\ Applications in Mathematics\\ Edition 1}
+\author{Swastik Majumder}
+\date{} % Leave this blank or adjust as needed
+
+\begin{document}
+
+\lstdefinestyle{mystyle}{
+    language=Python,
+    basicstyle=\footnotesize\ttfamily, % Adjust font size and use courier font
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=8pt, % Adjust this value for proper line numbering alignment
+    backgroundcolor=\color{white},
+    frame=lines,
+    framesep=2pt,
+    framerule=0.5pt,
+    rulecolor=\color{black},
+    breaklines=true,
+    tabsize=4,
+    showspaces=false,
+    showstringspaces=false,
+    escapeinside={(*@}{@*)}, % if you want to add LaTeX within your code
+    linewidth=\textwidth, % Ensure lines do not go outside the page
+}
+\lstset{basicstyle=\footnotesize\ttfamily}
+\frontmatter % Switches to Roman page numbering and suppresses chapter numbering
+
+\maketitle
+% Copyright page
+\newpage
+\vspace*{\fill}
+\begin{center}
+    \textbf{Copyright © 2024 by Swastik Majumder}\\
+    All rights reserved.
+\end{center}
+\vspace*{\fill}
+\newpage
+\thispagestyle{empty} % Suppress page number on title page
+
+% Add any additional front matter here, such as dedication, acknowledgments, or table of contents
+
+\tableofcontents % Optional: include a table of contents
+
+\mainmatter % Switches to Arabic page numbering and starts chapter numbering
+
+% Set page style to empty to remove foot and headnotes
+\pagestyle{empty}
+
+% Continue with the main matter, including chapters
+
+% Preface
+\chapter*{Preface}
+
+This book started with a dream. Whenever we have one, it tempts us to think how much more adventurous and interesting the world could be if those dreams had become true. But then we realize that it was just a dream we saw, and it upsets us as nothing in reality is quite like it. But we cannot simply sit and do nothing to make those innocent intellectual dreams of ours more vivid and come to life. We need to get out into the external world just to fuel it with real resources to fulfil our aspirations, and we ought not to leave any possibilities and consider every tool to use if that's helpful for us.
+
+The contents of this book deal with the matter of what we claim as transcendental computing. I am unaware why this idea is unpopular in its concrete form even though it's an intuitive and interesting idea for all who have ever felt a connection to the facts and contemplation while they have tried pursuing algorithms in any context. To make this more explicit, here, we will be talking about the "what if" hypothetical scenario of the existence of infinitely fast computers (aka transcendental computers), and that's what we are going to explore in this book.
+
+% Chapters and sections
+\chapter{What is Transcendental Computing}
+
+It is a hypothetical device which allows computation of any program even unoptimized ones to its complete end, in a fraction of a second. We will clarify what unoptimized program mean and how the concept of this hypothetical device could be considered in upcoming sections.
+
+\section{Common Problems Faced While Writing Code}
+
+Just as an ordinary computer we can write code and run them in the TC (let's use short TC for transcendental computers). We would also need to specify a programming language as we do with usual computers, and we can allow like Python or C programming language within it to support. Even though, whatever programming language we use they are all pretty much similar to each other. And the notion of algorithms is common to all progrramming languages. Now suppose we are using python programming and we start writing a program related to some task. There are certain things we keep in mind for general. I will arrange a few common points on the things we keep in mind.
+ 
+\begin{itemize}
+    \item We want our program to align with our goal and the task we have at hand (Computationally modelling the problem)
+    \begin{itemize}
+        \item No bugs in the code
+        \item It honestly represents what we claimed as our given problem
+        \item The program should halt after a certain period and should not be an infinite loop
+    \end{itemize}
+    
+    \item We want the program to execute completely and actually achieve the task when demanded (Execution)
+    \begin{itemize}
+        \item We need to take care that the memory is enough for the program (Memory)
+        \item We need to take care also about that the program is efficient and does the desired thing in a short span of time (Speed)
+    \end{itemize}
+\end{itemize}
+
+For our purposes the first point needs to be taken care of, anyways, whether or not we are using TCs or not. There can be relaxations to the second point given, that's because TCs are garunteed to have infinite memory and processing speed. Let's discuss in the next section how can we overcome problems given in the second point and typically how people used to deal with it.
+
+\section{How to Overcome those Problems by Writing Unoptimized Code and Defining Transcendental Computing}
+
+There are several ways we are usually able to overcome the second point (Execution). This includes carefully designing the program, analyzing its complexity and taking into account specifically what are more resource intensive. I will list them.
+
+\begin{itemize}
+    \item Carefully designing the program
+    \item Exploiting complexity theory in computer science, for a more systematic and intelligent approach 
+    \item Taking care into what is specifically resource intensive
+\end{itemize}
+
+We will see that, TC being a radical approach to computer science, will in essence ignore the problems of execution altogether. That is because its impossible to get rid of the issue at the first place, even if we employ solutions, so liberating us. Also, it is a framework of computation where more powerful and creative algorithms can be develop which were not possible before. Transcendenting the traditional limits. Hence, we will be writing unoptimized code, which even though slower and worse in the traditional perspective but useful for our purposes.
+
+So we can conclude the code we write to computationally model our problem has its own worth. We would be writing unoptimized code from now on. Even though, maintaining efficiency can still be valuable because we would be able to debug and verify our algorithms (even though, we can't verify our full blown program, we can verify parts of it or when the given input is less complex than it usually is). 
+
+We can define TC as -
+\textbf{Writing code for a logically precise system and not running it, because it won't be possible to do so due to resource constraints. Let a hypothetical device run it. Otherwise we can predict what is going to be the output and believe it.}
+
+\section{Note on Serial Vs Parallel Computation}
+
+Note that we are talking about efficieny of a single computer rather than using a lot more number of computers. That's the difference between serial and parallel computation. In real life, parallel computing can be readily accessed because its not only a single computer we have with us. But there is limit on how fast a single computer can be. Serial processing is more perfect and that's what TCs will idealize.
+
+\section{Python is used in this Book}
+
+Initially when we used C language to write this program we faced several problems related to memory management and supporting scalability. Python manages to solve them to some degree and hence it is what we used to code the project. We will list advantages of Python.
+
+\begin{itemize}
+    \item Ability to solve any large numerical: In Python, you can compute factorials of 100 without any worries, thanks to some internal features that assist in handling large numerical computations.
+    \item Scalable data structures: Python offers data structures that can dynamically grow in size. For example, with lists, you can use the \texttt{append()} method to add new elements indefinitely, and similar functionality exists for other data structures and supporting functions available in Python.
+    \item High-level Language: Python is easy to write and understand, which saves time by not requiring programmers to reinvent the wheel for common tasks.
+    \item Memory Management: Managing memory is not trivial, but Python alleviates this concern, allowing programmers to focus on the problem at hand without worrying about memory management.
+\end{itemize}
+
+We can go to the next chapter now, as TCs had been described well. 
+
+\chapter{Consequences of Transcendental Computer's Hypothetical Existence}
+
+We will discuss what could happen if such a powerful computer really appears in existence. What will be the consequences there-after.
+
+\section{A Technological Revolution}
+First thing would be, we would not need supercomputers anymore. Not only supercomputing but every computer user could be connecting to the central TC which was introduced to the world and then, it will be able to handle all workloads, effortlessly. So investing for computing will no more be needed. I think even if the computing power is available, in this, we might not assume the availability of high information transmition rate. So, we would stick to our older computers for most of the time and connect to the TC when computationally intensive task would be needed to done. Either way most of our problems will be solved. It not only will be an invention, an entire technological revolution would be starting because of it.  I could mention several scenarios where developments would have started to be occuring.
+
+* Cracking Passwords: Cryptography will get significant impacts from this revolution. If we have a password to crack and the encryption algorithm is offline, its simply possible to brute-force the password, no matter how difficult it will be. Because TCs are defined to be as fast as required. No matter how long or how complicated the process is TC will nail it in no amount of time. Internet too rely on this perhaps, to some extent, and if they are using algorithms which are offline the security will be compromised. Lots of changes had to be made in the realm of encryption, and possibly some of problems would be left with no solutions, infront of the power of TCs.
+
+* Quantum Computing Project will Fail: Now we have a much more powerful solution, so, there will be no need of quantum computers anymore. Quantum computers is told to be in different in its architecture but will be always inferior to the usual kind of computer architecture we have. But the usual computers were not fast enough. But its a different case for TCs and nothing else like quantum computers will remain useful anymore.
+
+Another thing that our quantum computing project would fail because we have a perfect computer already with us.
+
+\section{Cracking Passwords}
+Cryptography will be a domain become completely solved. Even the internet rely on passwords and encyptions. We would have created a big problem for us, because the availability TC could mean, damages on the security of internet. 
+
+\section{Solving Chess}
+A very short program would be totally enough to solve chess. Just a implementation of minimax algorithm would do. We would have cracked the problem of who wins in chess, white or black or draw, given a perfect play is done.
+
+\section{Solving Mathematics}
+I claim, it is possible to computationally model mathematics, to how much degree we want to using TCs. This is an application we will be targetting in our book to concretize.
+
+\section{Computationally Modelling Examinations}
+And once we are able to solve mathematics, we can computationally model examinations too. And that is a important part of society.
+
+\section{Any Logically Precise System Can be Solved}
+And not only mathematics, but any logically precise system defined, could be computationally modelled. For example physics.
+
+\section{Simulation of the Universe}
+I think solving physics is the nearest way we can do something like "simulating the universe". We could connect our physics framework and math one together to acheive it. I don't believe we can do something like that "simulating particle by particle".  There is a finite amount of possiblities of the physical states of the universe, because we are using math to even abstract out things like calculus with which continuity is usually handled . This approach could work then.
+
+\section{Not Just A Hypothetical Analysis But A Framework}
+Its not only hypothetical scenarios but its possible the concretize the codes for it. Even though it could be challenging. Its an entire whole subject because it has so many possiblities. I don't know why people didn't consider this idea before and why it is unpopular.
+
+\section{This Project is Impactful because of Concrete Code}
+We provided concrete codes which promises people that this is possible. 
+
+We can move to the next chapters which aims to explain what we have already, especially in the applications with math.
+
+\chapter{Intuition of the Mathematical Program}
+
+\section{We will Solve Simple Algebra}
+When we say mathematics, we are talking about solving algebra and the operations addition, multiply and power. We deal with integers. Also, we don't differentiate between constant and variable variables. We choose algebra because, all algebraic equations have the domain as all real numbers and we don't need to face the problem of incomplete domains and undefined values like division by zero. In next books, we will do better and solve things like calculus or trigonometry too, by handling the domains of the equations carefully.
+
+\section{Equations As Trees}
+We will represent equations as trees. Let's represent the equation \(x \cdot x + x^2\) using trees.
+\begin{figure}[h]
+    \centering
+        \begin{tikzpicture}[level/.style={sibling distance=60mm/#1}, level distance=20mm]
+            \node {add}
+                child {node {$multiply$}  % This is the corrected symbol for caret (^)
+                    child {node {$x$}}
+                    child {node {$x$}}
+                }
+                child {node {$power$}
+                    child {node {$x$}}
+                    child {node {$2$}}
+                };
+        \end{tikzpicture}
+    \caption{\(x \cdot x + x^2\)}
+    \label{fig:tikz1}
+\end{figure}
+
+\subsection{Brackets are nodes in the trees}
+Brackets are important in mathematical equations. Its because mathematical equations rely on its recursiveness. BODMAS rule is just a way of writing less.
+
+\subsection{Atmost two elements in a bracket}
+We could have allowed more elements to come in a single bracket. But it was chosen for the following reasons -
+
+\begin{itemize}
+    \item More number of elements mean we would need to do permutation, to rebracket in all possible ways.
+    \item We could rebracket using simple formulas like \(x + y = y + x\), and that would be enough to explore things like commutativity and associativity.
+    \item We are simplifying and focusing on fundamental aspects, reducing the system.
+    \item We could allow for more than two elements when we need to consider the order of arguments. And commutativity and associativity does not seem relevant.
+\end{itemize}
+
+\subsection{Equal equations are not equivalent}
+
+We can also see from the tree analysis that equal equations are not considered as same. What we are going to do after all is generating equal but not equivalent equations. 
+
+\section{Applying Fomulas on Equations}
+
+Formulas are the way we are going to manipulate a given equation. One of the formula can be \(x + y = y + x\), because it has a lhs and a rhs. We are going to compare the lhs and the given equation we want to manipulate, if their structure matches, we will transform the structure according to the formula's rhs.
+We not only will apply the formulas on the equation as a whole (on the root of the tree) but we will also attempt to apply them on the sub equations. So a single formula, a single equation, could potentially give rise to none, single or multiple outputs.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[level/.style={sibling distance=60mm/#1}, level distance=20mm]
+        \node {add}
+            child {node {$add$}
+                child {node {$x$}}
+                child {node {$x$}}
+            }
+            child {node {$add$}
+               child {node {$x$}}
+                child {node {$x$}}
+            };
+    \end{tikzpicture}
+    \caption{Given equation, formula \(x + x = 2 \times x\) to be applied}
+    \label{fig:tikz_add}
+    \vspace{0.5cm} % Adjust vertical spacing between figures
+    \begin{tikzpicture}[level/.style={sibling distance=60mm/#1}, level distance=20mm]
+        \node {multiply}
+            child {node {$2$}}
+            child {node {$add$}
+               child {node {$x$}}
+                child {node {$x$}}
+            };
+    \end{tikzpicture}
+    \caption{Formula applied at root}
+    \label{fig:tikz_multiply}
+    \vspace{0.5cm} % Adjust vertical spacing between figures
+    \begin{tikzpicture}[level/.style={sibling distance=60mm/#1}, level distance=20mm]
+        \node {add}
+            child {node {$multiply$}
+                child {node {$2$}}
+                child {node {$x$}}
+            }
+            child {node {$add$}
+               child {node {$x$}}
+                child {node {$x$}}
+            };
+    \end{tikzpicture}
+    \caption{Formula applied to a certain part only}
+    \label{fig:tikz_add_multiply}
+    \vspace{0.5cm} % Adjust vertical spacing between figures
+    \begin{tikzpicture}[level/.style={sibling distance=60mm/#1}, level distance=20mm]
+        \node {add}
+            child {node {$add$}
+                child {node {$x$}}
+                child {node {$x$}}
+            }
+            child {node {$multiply$}
+               child {node {$2$}}
+                child {node {$x$}}
+            };
+    \end{tikzpicture}
+    \caption{Formula applied to some another part}
+    \label{fig:tikz_add_multiply}
+\end{figure}
+
+\section{Deduction}
+
+Once we can transform a single equation into several equals (but not equivalent), we are ready for doing deduction. In this deduction we try this process recursively and explore more equal equations. We can use breadth-first search, depth-first search so on for doing this.
+
+\section{Iterating over All Possible Mathematical Equations}
+
+I have developed a technique were we create equations, given a parameter "depth" and provided elements to build it. The equations may or may not be equal or equivalent to each other. One of the applications of the TC concept.
+
+\section{Equal Categories}
+
+We can create categories of equations which are equal to each other. The equations to categories will be provided by the iteration over all possible mathematical equations. The jugdment for categorization will be determined by the formulas given and sometimes deduction would be needed.
+
+\chapter{Explaining the Mathematical Program Code}
+
+\section{class TreeNode}
+
+Buliding blocks for buliding equation trees.
+
+\section{tree\_form()}
+
+Converting string representation of equation to tree form. Example of a tree represented as a string. The equation \(x \cdot x + x^2\) will be used as example.
+\begin{lstlisting}[caption={Example text file representation}, label={lst:text_file}]
+f_add
+ f_mul
+  v_0
+  v_0
+ f_pow
+  v_0
+  d_2
+\end{lstlisting}
+Where, f\_add is addition, f\_mul is multiplication and f\_pow power. v\_0 is the variable x and d\_2 is the integer 2.
+
+\section{str\_form()}
+
+Converting the tree representation to string.
+
+\section{apply\_individual\_formula\_on\_given\_equation()}
+
+Takes in a single formula, a single equation, and returns equals to that equations return by the formula. In case do\_only\_arithmetic is true, it will perform artihmetic on the equation and ignore all other things.
+
+\subsection{does\_given\_equation\_satisfy\_forumla\_lhs\_structure()}
+
+Returns true if the formula lhs satisfies the given equation structure. Also stores the extracted variable data from the given equation to the variable\_list dictionary if its true in statisfying.
+
+\subsection{formula\_apply\_root()}
+
+Apply formula on the root. The equation will transformed from the data in variable\_list after it gets filled into the formula rhs.
+
+\subsection{formula\_apply\_various\_sub\_equation()}
+
+Apply formula in sub equations, leaving rest of the equation unchanged. Also keep track where to make the change using the count\_target\_location value.
+
+\section{return\_formula\_file()}
+
+Formulas are alternatively lhs and rhs in the text file. There can be so many formulas in a file and lhs and rhs pair of each of them.
+
+\section{generate\_transformation()}
+
+Collect all the formulas from a file and then apply it to equation using the function apply\_individual\_formula\_on\_given\_equation() and creates transformation list.
+
+\section{search()}
+
+Recursively generates all equals to the given equation using generate\_transformation()
+
+\section{fx\_nest()}
+
+This function helps iterate through all mathematical equation given a certain depth limit of equation to form.
+
+\subsection{neighboring\_math\_equation()}
+
+Some function which generates both unequal and unequivalent given a single equations.
+
+\subsection{append\_at\_last()}
+
+We append the element at the leaf, and check if its a valid equation. A valid equation have all the arguments of the operation filled and also, the leaf node should not be a operator.
+
+\subsection{bfs()}
+
+simple breadth-first search to generate mathematical equations using neighboring\_math\_equation(). That function will produce the neighboring nodes given a node.
+
+\section{break\_equation(), spot\_invalid\_equation() and print\_equation()}
+
+break\_equation(), break all the sub equations and return a list filled with them. spot\_invalid\_equation() ensures power should be integer greater than 2. Discard the equation otherwise.
+
+\section{Driver Code}
+
+Makes category of equal equations, which the elements and the formula list provided. And then print each category.
+
+\section{Formula List}
+
+We mention commutation, association, identity, for all operations power, addition and multiplication. We also write the relationship between power and multiplication as a formula, just to remove all powers to make them multiplication. 
+
+\chapter{Relevant Literature}
+
+The literature is yet to be completely reviewed. But this idea of writing unoptimized symbolic computational algorithms seems unpopular. The concept of symbolic computation is popular though, which our project overlaps with. For example in using trees to represent equations.
+
+\section{Turing Machines}
+
+Turing Machine is like a transcendental computer but supports more complicated programming languages and just not four tuples set instructions. 
+
+\section{Symbolic Computation and Computer Algebra}
+
+This overlaps a lot with our project except, with the assumption of TC. There is no "iterating over all possible equations" in this topic. 
+
+\section{Mathematical Logic}
+
+Mathematical logic aimed to formalize mathematics, but it failed only because it was too formal. We can give a partial artificial intelligence touch to the programs. If humans can do it, we can make computers do it too.
+
+\chapter{The Entire Mathematical Program Code}
+
+\begin{lstlisting}[style=mystyle, caption={main.py}, label={lst:python_code}]
+# Copyright (c) 2024 Swastik Majumder
+# All rights reserved.
+
+# Part of the book Transcendental Computing with Python: Applications in Mathematics - Edition 1
+
+from collections import deque
+import copy
+
+# Basic data structure, which can nest to represent math equations
+class TreeNode:
+    def __init__(self, name, children=None):
+        self.name = name
+        self.children = children or []
+
+# convert string representation into tree
+def tree_form(tabbed_strings):
+    lines = tabbed_strings.split("\n")
+    root = TreeNode("Root") # add a dummy node
+    current_level_nodes = {0: root}
+    stack = [root]
+    for line in lines:
+        level = line.count(' ') # count the spaces, which is crucial information in a string representation
+        node_name = line.strip() # remove spaces, when putting it in the tree form
+        node = TreeNode(node_name)
+        while len(stack) > level + 1:
+            stack.pop()
+        parent_node = stack[-1]
+        parent_node.children.append(node)
+        current_level_nodes[level] = node
+        stack.append(node)
+    return root.children[0] # remove dummy node
+
+# convert tree into string representation
+def str_form(node):
+    def recursive_str(node, depth=0):
+        result = "{}{}".format(' ' * depth, node.name) # spacings
+        for child in node.children:
+            result += "\n" + recursive_str(child, depth + 1) # one node in one line
+        return result
+    return recursive_str(node)
+
+# Generate transformations of a given equation provided only one formula to do so
+# We can call this function multiple times with different formulas, in case we want to use more than one
+# This function is also responsible for computing arithmetic, pass do_only_arithmetic as True (others param it would ignore), to do so
+def apply_individual_formula_on_given_equation(equation, formula_lhs, formula_rhs, do_only_arithmetic=False):
+    variable_list = {}
+    def node_type(s):
+        if s[:2] == "f_":
+            return s
+        else:
+            return s[:2]
+    def does_given_equation_satisfy_forumla_lhs_structure(equation, formula_lhs):
+        nonlocal variable_list
+        # u can accept anything and p is expecting only integers
+        # if there is variable in the formula
+        if node_type(formula_lhs.name) in {"u_", "p_"}: 
+            if formula_lhs.name in variable_list.keys(): # check if that variable has previously appeared or not
+                return str_form(variable_list[formula_lhs.name]) == str_form(equation) # if yes, then the contents should be same
+            else: # otherwise, extract the data from the given equation
+                if node_type(formula_lhs.name) == "p_" and "v_" in str_form(equation): # if formula has a p type variable, it only accepts integers
+                    return False
+                variable_list[formula_lhs.name] = copy.deepcopy(equation)
+                return True
+        if equation.name != formula_lhs.name or len(equation.children) != len(formula_lhs.children): # the formula structure should match with given equation
+            return False
+        for i in range(len(equation.children)): # go through every children and explore the whole formula / equation
+            if does_given_equation_satisfy_forumla_lhs_structure(equation.children[i], formula_lhs.children[i]) is False:
+                return False
+        return True
+    # transform the equation as a whole aka perform the transformation operation on the entire thing and not only on a certain part of the equation
+    def formula_apply_root(formula):
+        nonlocal variable_list
+        if formula.name in variable_list.keys():
+            return variable_list[formula.name] # fill the extracted data on the formula rhs structure
+        data_to_return = TreeNode(formula.name, None) # produce nodes for the new transformed equation
+        for child in formula.children:
+            data_to_return.children.append(formula_apply_root(copy.deepcopy(child))) # slowly build the transformed equation
+        return data_to_return
+    count_target_node = 1
+    # try applying formula on various parts of the equation
+    def formula_apply_various_sub_equation(equation, formula_lhs, formula_rhs, do_only_arithmetic):
+        nonlocal variable_list
+        nonlocal count_target_node
+        data_to_return = TreeNode(equation.name, children=[])
+        variable_list = {}
+        if do_only_arithmetic == False:
+            if does_given_equation_satisfy_forumla_lhs_structure(equation, copy.deepcopy(formula_lhs)) is True: # if formula lhs structure is satisfied by the equation given
+                count_target_node -= 1
+                if count_target_node == 0: # and its the location we want to do the transformation on
+                    return formula_apply_root(copy.deepcopy(formula_rhs)) # transform
+        else: # perform arithmetic
+            if len(equation.children) == 2 and all(node_type(item.name) == "d_" for item in equation.children): # if only numbers
+                x = []
+                for item in equation.children:
+                    x.append(int(item.name[2:])) # convert string into a number
+                if equation.name == "f_add":
+                    count_target_node -= 1
+                    if count_target_node == 0: # if its the location we want to perform arithmetic on
+                        return TreeNode("d_" + str(sum(x))) # add all
+                elif equation.name == "f_mul":
+                    count_target_node -= 1
+                    if count_target_node == 0:
+                        p = 1
+                        for item in x:
+                            p *= item # multiply all
+                        return TreeNode("d_" + str(p))
+                elif equation.name == "f_pow" and x[1]>=2: # power should be two or a natural number more than two
+                    count_target_node -= 1
+                    if count_target_node == 0:
+                        return TreeNode("d_"+str(int(x[0]**x[1])))
+        if node_type(equation.name) in {"d_", "v_"}: # reached a leaf node
+            return equation
+        for child in equation.children: # slowly build the transformed equation
+            data_to_return.children.append(formula_apply_various_sub_equation(copy.deepcopy(child), formula_lhs, formula_rhs, do_only_arithmetic))
+        return data_to_return
+    cn = 0
+    # count how many locations are present in the given equation
+    def count_nodes(equation):
+        nonlocal cn
+        cn += 1
+        for child in equation.children:
+            count_nodes(child)
+    transformed_equation_list = []
+    count_nodes(equation)
+    for i in range(1, cn + 1): # iterate over all location in the equation tree
+        count_target_node = i
+        orig_len = len(transformed_equation_list)
+        tmp = formula_apply_various_sub_equation(equation, formula_lhs, formula_rhs, do_only_arithmetic)
+        if str_form(tmp) != str_form(equation): # don't produce duplication, or don't if nothing changed because of transformation impossbility in that location
+            transformed_equation_list.append(tmp) # add this transformation to our list
+    return transformed_equation_list 
+
+# Function to read formula file
+def return_formula_file(file_name):
+    content = None
+    with open(file_name, 'r') as file:
+        content = file.read()
+    x = content.split("\n\n")
+    input_f = [x[i] for i in range(0, len(x), 2)] # alternative formula lhs and then formula rhs
+    output_f = [x[i] for i in range(1, len(x), 2)]
+    input_f = [tree_form(item) for item in input_f] # convert into tree form
+    output_f = [tree_form(item) for item in output_f]
+    return [input_f, output_f] # return
+
+# Function to generate neighbor equations
+def generate_transformation(equation):
+    input_f, output_f = return_formula_file("formula_list.txt") # load formula file
+    transformed_equation_list = []
+    transformed_equation_list += apply_individual_formula_on_given_equation(tree_form(equation), None, None, True) # perform arithmetic
+    for i in range(len(input_f)): # go through all formulas and collect if they can possibly transform
+        transformed_equation_list += apply_individual_formula_on_given_equation(tree_form(equation), copy.deepcopy(input_f[i]), copy.deepcopy(output_f[i]))
+    return list(set(transformed_equation_list)) # set list to remove duplications
+
+# Function to recursively transform equation
+def search(equation, depth):
+    if depth == 0: # limit the search
+        return None
+    output = generate_transformation(equation) # generate equals to the asked one
+    for i in range(len(output)):
+        result = search(str_form(output[i]), depth-1) # recursively find even more equals
+        if result is not None:
+            output += result # hoard them
+    return output
+
+# Generate all possible equations in mathematics !!!
+# Depth is how much complex equation we allow. It can be made as complicated as desired.
+def fx_nest(terminal, fx, depth):
+    def neighboring_math_equation(curr_tree, depth=depth): # Generate neighbouring equation trees
+        def is_terminal(name):
+            return not (name in fx.keys()) # Operations are not leaf nodes
+        element = None # What to a append to create something new
+        def append_at_last(curr_node, depth): # Append something to generate new equation
+            if (is_terminal(element) and depth == 0) or (not is_terminal(element) and depth == 1): # The leaf nodes can't be operations
+                return None
+            if not is_terminal(curr_node.name):
+                if len(curr_node.children) < fx[curr_node.name]: # An operation can take only a mentioned number of arugments
+                    curr_node.children.append(TreeNode(element))
+                    return curr_node
+                for i in range(len(curr_node.children)):
+                    output = append_at_last(copy.deepcopy(curr_node.children[i]), depth - 1)
+                    if output is not None: # Check if the sub tree has already filled with arugments
+                        curr_node.children[i] = copy.deepcopy(output)
+                        return curr_node
+            return None
+        new_math_equation_list = []
+        for item in terminal + list(fx.keys()): # Create new math equations with given elements
+            element = item # set the element we want to use to create new math equation
+            tmp = copy.deepcopy(curr_tree)
+            result = append_at_last(tmp, depth)
+            if result is not None:
+                new_math_equation_list.append(result)
+        return new_math_equation_list
+    all_possibility = []
+    # explore mathematics itself with given elements
+    # breadth first search, a widely used algorithm
+    def bfs(start_node):
+        nonlocal all_possibility
+        queue = deque()
+        visited = set()
+        queue.append(start_node)
+        while queue:
+            current_node = queue.popleft()
+            if current_node not in visited:
+                visited.add(current_node)
+                neighbors = neighboring_math_equation(current_node)
+                if neighbors == []:
+                    all_possibility.append(str_form(current_node))
+                    all_possibility = list(set(all_possibility)) # remove duplicates
+                for neighbor in neighbors:
+                    if neighbor not in visited:
+                        queue.append(neighbor)
+    for item in fx.keys(): # use all the elements
+        bfs(TreeNode(item))
+    return all_possibility # return mathematical equations produce
+
+# break a equation into parts
+def break_equation(equation):
+    sub_equation_list = [equation]
+    equation = tree_form(equation)
+    for child in equation.children: # breaking equation by accessing children
+        sub_equation_list += break_equation(str_form(child)) # collect broken equations
+    return sub_equation_list
+
+# spot mathematical equations which are poorly formed
+def spot_invalid_equation(equation):
+    equation = tree_form(equation)
+    if equation.name == "f_pow": # power should only have integer on the exponent and it should be two or more than two
+        return equation.children[1].name[:2] == "d_" and int(equation.children[1].name[2:]) >= 2
+    return True
+
+# fancy print
+def print_equation_helper(equation_tree):
+    if equation_tree.children == []:
+        return equation_tree.name # leaf node
+    s = "(" # bracket
+    sign = {"f_add": "+", "f_mul": "*", "f_pow": "^"} # operation symbols
+    for child in equation_tree.children:
+        s+= print_equation_helper(child) + sign[equation_tree.name]
+    s = s[:-1] + ")"
+    return s
+
+# fancy print main function
+def print_equation(eq):
+    eq = eq.replace("v_0", "x")
+    eq = eq.replace("v_1", "y")
+    eq = eq.replace("v_2", "z")
+    eq = eq.replace("d_", "")
+    return print_equation_helper(tree_form(eq))
+
+# integers start with d and variables start with v
+element_list = ["d_" + str(i) for i in range(1, 3)] + ["v_" + str(i) for i in range(0, 1)] # allowed integers and variable in our mathematics
+
+formed_math = fx_nest(element_list, {"f_add": 2, "f_mul": 2, "f_pow": 2}, 2) # scoop out a part of mathematics
+
+formed_math = [equation for equation in formed_math if all(spot_invalid_equation(item) for item in break_equation(equation))] + element_list # remove poorly form math
+
+equal_category = [[item] for item in formed_math] # categories of equal equations
+
+# iterate through all possible equations and categorize equal ones
+for equation in formed_math:
+    output_list = search(equation, 1) # generate equal ones
+    for output in output_list: # check if they are in present in some equality category
+        output = str_form(output)
+        output_loc = -1
+        equation_loc = -1
+        for j in range(len(equal_category)):
+            if equation in equal_category[j]:
+                equation_loc = j
+            if output in equal_category[j]:
+                output_loc = j
+        if equation_loc != -1 and output_loc != -1 and equation_loc != output_loc: # if found two categories with atleast one equation in common
+            equal_category.append(equal_category[output_loc]+equal_category[equation_loc]) # merge the two categories
+            equal_category.pop(max(output_loc, equation_loc))
+            equal_category.pop(min(output_loc, equation_loc))
+
+# print all the equal equation categories
+for item in equal_category:
+    cat = list(set([print_equation(sub_item) for sub_item in item])) # remove duplicate fancy prints
+    for sub_item in cat:
+        print(sub_item)
+    print("----------")
+\end{lstlisting}
+\newpage
+\begin{multicols}{3}
+[
+\section{formula\_list.txt} % Add a section heading above the multicolumn listing
+]
+\begin{verbatim}
+f_add
+ u_0
+ u_1
+
+f_add
+ u_1
+ u_0
+
+f_add
+ u_0
+ f_add
+  u_1
+  u_2
+
+f_add
+ u_1
+ f_add
+  u_0
+  u_2
+
+f_add
+ u_0
+ d_0
+
+u_0
+
+f_mul
+ u_0
+ u_1
+
+f_mul
+ u_1
+ u_0
+
+f_mul
+ u_0
+ f_mul
+  u_1
+  u_2
+
+f_mul
+ u_1
+ f_mul
+  u_0
+  u_2
+
+f_mul
+ u_0
+ d_0
+
+d_0
+
+f_mul
+ u_0
+ d_1
+
+u_0
+
+f_mul
+ u_0
+ f_add
+  u_1
+  u_2
+
+f_add
+ f_mul
+  u_0
+  u_1
+ f_mul
+  u_0
+  u_2
+
+f_pow
+ u_0
+ p_0
+
+f_mul
+ u_0
+ f_pow
+  u_0
+  f_add
+   p_0
+   d_-1
+
+f_pow
+ u_0
+ d_1
+
+u_0
+
+f_pow
+ u_0
+ d_2
+
+f_mul
+ u_0
+ u_0
+\end{verbatim}
+\end{multicols}
+\newpage
+\begin{multicols}{2}
+[
+\section{Output of the Program: Last 250 Lines} % Add a section heading above the multicolumn listing
+]
+\begin{verbatim}
+...
+((2^2)+2)
+((1+2)*2)
+((2*2)+2)
+((1*2)*(1+2))
+((1*2)+(2*2))
+((2*2)+(2*1))
+((2*2)+(1+1))
+((1+1)+(2*2))
+((2*1)*(2+1))
+(2+(2*2))
+((2*1)*(1+2))
+((1*2)+(2^2))
+((1+1)+(2^2))
+((2^2)+(2*1))
+((2*2)+(1*2))
+((2^2)+(1+1))
+((2*1)+(2^2))
+((1*2)*(2+1))
+((1+1)*(1+2))
+((2^2)+(1*2))
+((1+2)*(1*2))
+----------
+((x*1)*(2+1))
+((1*x)+(2*x))
+(x*(2+1))
+((2+1)*(1*x))
+((1+2)*x)
+((2*x)+(1*x))
+((1+2)*(1*x))
+(x+(2*x))
+((x*2)+x)
+((1*x)*(2+1))
+((1*x)+(x*2))
+((2*x)+x)
+((1+2)*(x*1))
+((2+1)*(x*1))
+((x*1)+(2*x))
+((2*x)+(x*1))
+(x+(x*2))
+((1*x)*(1+2))
+((x*1)+(x*2))
+(x*(1+2))
+((x*1)*(1+2))
+((x*2)+(1*x))
+((2+1)*x)
+((x*2)+(x*1))
+----------
+((1^2)+1)
+(1*2)
+(1+1)
+((1*1)*(1*2))
+((1^2)*2)
+((2*1)*1)
+((1*2)*(1^2))
+(2*(1*1))
+((1*1)+(1*1))
+((1*2)*1)
+((1*2)*(1*1))
+((1+1)*(1^2))
+((1^2)*(1+1))
+((1^2)*(1*2))
+(2*1)
+((1^2)+(1*1))
+(1+(1*1))
+(2*(1^2))
+(1*(1*2))
+((2*1)*(1*1))
+(1+(1^2))
+((1*1)+1)
+((1*1)*2)
+((1*1)*(2*1))
+2
+(1*(2*1))
+((1^2)*(2*1))
+((2*1)*(1^2))
+((1+1)*1)
+((1+1)*(1*1))
+((1*1)+(1^2))
+((1^2)+(1^2))
+((1*1)*(1+1))
+(1*(1+1))
+----------
+1
+((1*1)*(1*1))
+((1^2)^2)
+((1^2)*(1*1))
+((1^2)*(1^2))
+((1*1)^2)
+((1*1)*(1^2))
+(1*1)
+(1^2)
+(1*(1^2))
+((1^2)*1)
+(1*(1*1))
+((1*1)*1)
+----------
+((1+1)*(2+2))
+((1*2)*(2+2))
+((2+2)*(1+1))
+((2+2)*(2*1))
+((2^2)+(2^2))
+((2*2)+(2*2))
+((2*2)+(2^2))
+((2+2)*(1*2))
+(2*(2+2))
+((2^2)+(2*2))
+((2*1)*(2+2))
+((2+2)*2)
+----------
+((1*1)*(x*1))
+((x*1)*1)
+((1^2)*x)
+((1*x)*(1^2))
+((1^2)*(1*x))
+(x*1)
+(1*x)
+(x*(1*1))
+(x*(1^2))
+((x*1)*(1^2))
+x
+(1*(1*x))
+((1*1)*(1*x))
+((1*1)*x)
+((1^2)*(x*1))
+((x*1)*(1*1))
+((1*x)*(1*1))
+(1*(x*1))
+((1*x)*1)
+----------
+((x+x)*(x+x))
+((x+x)^2)
+----------
+((x+x)+(1^2))
+((x+x)+(1*1))
+((1*x)+(x+1))
+((1+x)+(1*x))
+((x*1)+(1+x))
+((x+1)+(1*x))
+((1*1)+(x+x))
+(x+(x+1))
+(1+(x+x))
+((1+x)+(x*1))
+(x+(1+x))
+((x+1)+x)
+((x+1)+(x*1))
+((x+x)+1)
+((1+x)+x)
+((x*1)+(x+1))
+((1*x)+(1+x))
+((1^2)+(x+x))
+----------
+((2*2)*(2*2))
+((2^2)^2)
+((2*2)^2)
+((2*2)*(2^2))
+((2^2)*(2*2))
+((2^2)*(2^2))
+----------
+(1*(x*x))
+((1^2)*(x^2))
+((x^2)*(1^2))
+((1*1)*(x^2))
+(x*x)
+((x^2)*1)
+((1*x)^2)
+((x*x)*(1^2))
+((x*1)*x)
+((1*x)*(1*x))
+(x^2)
+((x*1)*(1*x))
+((x*x)*(1*1))
+(x*(x*1))
+((1*x)*x)
+((x*1)^2)
+((x*1)*(x*1))
+((x^2)*(1*1))
+(1*(x^2))
+(x*(1*x))
+((1*x)*(x*1))
+((x*x)*1)
+((1*1)*(x*x))
+((1^2)*(x*x))
+----------
+((1+1)*(2*1))
+(2+(1+1))
+((1*2)+(1*2))
+((1+1)+2)
+((1+2)+(1^2))
+((1+1)+(1+1))
+((1*2)^2)
+((2+2)*1)
+((2*1)*(1*2))
+((2^2)*1)
+(1+(1+2))
+((1^2)*(2+2))
+(1*(2^2))
+((2*1)*2)
+((2^2)*(1*1))
+((2*1)^2)
+((2+2)*(1^2))
+(2+(2*1))
+((1+1)*(1*2))
+((1*2)*2)
+((2*1)+(1*2))
+((2*1)+(1+1))
+((1*1)+(2+1))
+((2*1)+2)
+(2+2)
+(1*(2+2))
+((1+1)*2)
+((1*2)+2)
+((2+1)+(1^2))
+((2+2)*(1*1))
+((2^2)*(1^2))
+((2*1)*(2*1))
+((1*2)*(1+1))
+((2+1)+(1*1))
+(2^2)
+((1^2)*(2*2))
+((1*2)*(2*1))
+((1+1)^2)
+((1*2)+(1+1))
+((1*1)*(2*2))
+(1+(2+1))
+((1*1)*(2+2))
+((2*2)*1)
+((1^2)+(1+2))
+((1+2)+1)
+((1*2)*(1*2))
+((1*1)+(1+2))
+(2*(2*1))
+((1+1)*(1+1))
+(2*(1+1))
+((1+1)+(1*2))
+((1*2)+(2*1))
+(2*(1*2))
+((2*2)*(1*1))
+((1^2)*(2^2))
+((1*1)*(2^2))
+((2*1)+(2*1))
+(2+(1*2))
+(1*(2*2))
+((2*1)*(1+1))
+(2*2)
+((2*2)*(1^2))
+((1+1)+(2*1))
+((1^2)+(2+1))
+((1+2)+(1*1))
+((2+1)+1)
+----------
+\end{verbatim}
+\end{multicols}
+\end{document}
